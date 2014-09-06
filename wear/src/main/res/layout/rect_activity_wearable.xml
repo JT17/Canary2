@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wearablemain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:onClick = "onClick"
     tools:context=".WearableActivity"
     tools:deviceIds="wear_square">
 
@@ -11,5 +13,13 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_square" />
+        android:text="@string/hello_square"/>
+
+    <Button android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click me!"
+        android:layout_gravity="center"
+        android:onClick="onClick" />
 </LinearLayout>
+<!-- From: file:/Users/JonathanTiao/source/Canary2/wear/src/main/res/layout/rect_activity_wearable.xml -->

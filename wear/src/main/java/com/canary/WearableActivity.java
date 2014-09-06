@@ -1,22 +1,32 @@
 package com.canary;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 
 public class WearableActivity extends Activity implements SensorEventListener {
     private static final String TAG = WearableActivity.class.getName();
-    private TextView mTextView;
     private SensorManager mSensorManager;
     private Sensor mHeartRateSensor;
     private static final int SENSOR_TYPE_HEARTRATE = 65562;
+    private TextView mTextView;
+    private Context mContext;
+    private ConfirmationActivity confirmationActivity;
+    PendingIntent pendingIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +38,11 @@ public class WearableActivity extends Activity implements SensorEventListener {
                 mTextView = (TextView) stub.findViewById(R.id.text);
             }
         });
+
+        mContext = this;
+        Log.v("LKSFJ", "a;dskjfa;");
+        pendingIntent =
+                PendingIntent.getActivity(this, 0, new Intent(this, WearableActivity.class), 0);
         mSensorManager = ((SensorManager)getSystemService(SENSOR_SERVICE));
         mHeartRateSensor = mSensorManager.getDefaultSensor(SENSOR_TYPE_HEARTRATE);
 
@@ -40,7 +55,7 @@ public class WearableActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Log.d(TAG, "sensor event: " + sensorEvent.accuracy + " = " + sensorEvent.values[0]);
-        
+
     }
 
     @Override
@@ -54,5 +69,20 @@ public class WearableActivity extends Activity implements SensorEventListener {
 
         mSensorManager.unregisterListener(this);
     }
+    public void onClick(View v){
+        Log.v("Viewpoop", Integer.toString(v.getId()));
+        switch(v.getId()){
+            case (R.id.button):
+                Log.v("Button", "Touched");
+                Notification notif = new Notification.Builder(mContext)
+                        .setContentTitle("My Notification")
+                        .setContentText("This is a notification")
+                        .setSmallIcon(R.drawable.ic_plusone_small_off_client)
+                        .build();
 
+                NotificationManager notificationManger =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManger.notify(0, notif);
+        }
+    }
 }
