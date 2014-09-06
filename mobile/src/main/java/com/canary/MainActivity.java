@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -51,7 +53,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         LocationListener {
 
     //typeface
-    
+    private TextView tv1;
 
     //Global constants for location updates
     // Milliseconds per second
@@ -90,6 +92,12 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Typeface tf = Typeface.createFromAsset(this.getResources().getAssets(), "Code_Pro_Demo.otf");
+        tv1 = (TextView)findViewById(R.id.text);
+        tv1.setTypeface(tf);
+
+
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(
                 LocationRequest.PRIORITY_HIGH_ACCURACY);

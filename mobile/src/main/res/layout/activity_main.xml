@@ -24,9 +24,9 @@
         android:id="@+id/imageView2" />
 
     <TextView
-        android:id="@+id/textviewid"
+        android:id="@+id/text"
         android:text="@string/tapanywhere"
-        android:typeface=""
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textColor = "#FF000000"
