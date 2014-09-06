@@ -49,6 +49,10 @@ import com.google.android.gms.location.LocationServices;
 public class MainActivity extends Activity implements  GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
+
+    //typeface
+    
+
     //Global constants for location updates
     // Milliseconds per second
     private static final int MILLISECONDS_PER_SECOND = 1000;
@@ -138,6 +142,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         switch(v.getId()) {
             case R.id.main:
                 Button mButton = (Button) v.findViewById(R.id.button_textoff);
+                updatesRequested = true;
                 if(mButton.getVisibility() == View.GONE){
                     mButton.setVisibility(View.VISIBLE);
                 }
@@ -152,11 +157,10 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
                 // sendSMS("7852182716", locationString);
                 break;
             case R.id.button_textoff:
-                updatesRequested = !updatesRequested;
+                updatesRequested = false;
                 Button mButton1 = (Button) v.findViewById(R.id.button_textoff);
-                String buttonText = "on";
-                if(updatesRequested == true)
-                    buttonText = "off";
+                String buttonText = "off";
+                mButton1.setVisibility(View.GONE);
                 mButton1.setText("Turn " + buttonText + " texts");
 
                 break;
