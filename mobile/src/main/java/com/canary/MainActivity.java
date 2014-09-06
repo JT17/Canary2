@@ -54,6 +54,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
 
     //typeface
     private TextView tv1;
+    private Button tv2;
 
     //Global constants for location updates
     // Milliseconds per second
@@ -93,10 +94,12 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Typeface tf = Typeface.createFromAsset(this.getResources().getAssets(), "Opificio.ttf");
+        Typeface tf = Typeface.createFromAsset(this.getResources().getAssets(), "Simpleton-Gothic.ttf");
         tv1 = (TextView)findViewById(R.id.text);
-        tv1.setTypeface(tf);
 
+        tv1.setTypeface(tf);
+        tv2 = (Button)findViewById(R.id.button_textoff);
+        tv2.setTypeface(tf);
 
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(
@@ -259,7 +262,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).cancel();
         mCurrentLocation = location;
     }
 

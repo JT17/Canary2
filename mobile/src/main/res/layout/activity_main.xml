@@ -19,7 +19,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
 
-        android:src="@drawable/canary"
+        android:src="@drawable/finalbird"
         android:scaleType="matrix"
         android:id="@+id/imageView2" />
 
@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:text= "@string/buttontext"
         android:visibility="gone"
+        android:textColor = "#FFFFFF"
         android:onClick="onClick"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
