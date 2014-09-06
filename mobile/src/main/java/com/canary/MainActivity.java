@@ -22,11 +22,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Wearable;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class MainActivity extends Activity implements  GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -46,7 +42,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
             MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
 
     private static final String GET_HELP = "/text_for_help";
-
+    private static final String STOP_HELP = "/stop_help";
 
     //Global Variables to keep track of location
     private GoogleApiClient mGoogleApiClient;
@@ -112,18 +108,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
 
 
     }
-    @Override
-    public void onMessageReceived(MessageEvent messageEvent){
-        Log.d("OUTPUT", "Message received on PHONE!!");
-        if (messageEvent.getPath().equals(GET_HELP)){
-            Log.d("Message Path", messageEvent.getPath());
-            String response = new String(messageEvent.getData());
-            Log.d("Message Contents", response);
-            sendSMSOnTime();
 
-        }
-        stopSelf();
-    }
     @Override
     protected void onStop(){
         super.onStop();
@@ -158,7 +143,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
                 break;
         }
     }
-    private void sendSMSOnTime(){
+    public void sendSMSOnTime(){
         String phoneNumber = "7852182716";
         String message = "My latitude is " + mCurrentLocation.getLatitude() +
                 " and my longitude is " + mCurrentLocation.getLongitude();
