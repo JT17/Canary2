@@ -50,7 +50,7 @@ public class WearableActivity extends Activity implements SensorEventListener {
     @Override
     protected void onStart() {
         super.onStart();
-        mSensorManager.registerListener(this, mHeartRateSensor, 3);
+        mSensorManager.registerListener(this, mHeartRateSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
