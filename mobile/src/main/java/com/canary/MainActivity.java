@@ -93,7 +93,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Typeface tf = Typeface.createFromAsset(this.getResources().getAssets(), "Code_Pro_Demo.otf");
+        Typeface tf = Typeface.createFromAsset(this.getResources().getAssets(), "Opificio.ttf");
         tv1 = (TextView)findViewById(R.id.text);
         tv1.setTypeface(tf);
 
