@@ -2,34 +2,34 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/pre-dexed/debug/classes-bacf862989f4a6e18b0c2e2c6620d485e48e47e5.jar"
-        jar="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
-    <item
-        dex="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/pre-dexed/debug/classes-0ed425ef7e94ac2e0b4c2426d1c3cb34a598e08e.jar"
-        jar="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/5.0.77/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="80a6f6f2d0dfcfae8c424cf81dcdf7157e7bf4b8"/>
-    <item
-        dex="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-4c2b884813bfabc51e981e310384c5e98dd02961.jar"
-        jar="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
-    <item
-        dex="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-bca9cd8c8082330ef7549e0398af852faae531fd.jar"
-        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        dex="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-6506904b69a6e6f780ef9ee6c8a36eddc673bc24.jar"
+        jar="C:\Users\Szeng\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
     <item
-        dex="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/pre-dexed/debug/classes-8bcbc3ae387a868bf7ac6adaaad15306992de61e.jar"
-        jar="/Users/JonathanTiao/source/Canary2/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        dex="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\pre-dexed\debug\classes-01ab8f3d5aab1bf3ef8244fd02fb5711166efcd5.jar"
+        jar="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\pre-dexed\debug\classes-73e0ab4c0894a585b19682c01dbffb417b9bb2b3.jar"
+        jar="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+    <item
+        dex="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\pre-dexed\debug\classes-9957f0db734351d7a74f52c1da9d492fcc177683.jar"
+        jar="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\5.0.77\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="80a6f6f2d0dfcfae8c424cf81dcdf7157e7bf4b8"/>
+    <item
+        dex="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-f6a6c3f6a0e4f70fc8c40c4f227468a95365fd87.jar"
+        jar="C:\Users\Szeng\Documents\GitHub\Canary2\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
 
 </pre-dex-items>
