@@ -16,7 +16,9 @@ import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.concurrent.CountDownLatch;
 
 public class WearableActivity extends Activity implements SensorEventListener {
     private static final String TAG = WearableActivity.class.getName();
@@ -27,15 +29,19 @@ public class WearableActivity extends Activity implements SensorEventListener {
     private Context mContext;
     private ConfirmationActivity confirmationActivity;
     PendingIntent pendingIntent;
+    private CountDownLatch latch;
+    double firstMeasure;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wearable);
+        latch = new CountDownLatch(1);
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mTextView = (TextView) stub.findViewById(R.id.text);
+                latch.countDown();
             }
         });
 
@@ -54,10 +60,19 @@ public class WearableActivity extends Activity implements SensorEventListener {
     }
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        Log.d(TAG, "sensor event: " + sensorEvent.accuracy + " = " + sensorEvent.values[0]);
-        TextView view = (TextView) findViewById(R.id.text);
-        view.setText(Float.toString(sensorEvent.values[0]));
+        try {
 
+            latch.await();
+            if(sensorEvent.values[0] > 0)
+                firstMeasure = sensorEvent.values[0];
+            Log.d(TAG, "sensor event: " + sensorEvent.accuracy + " = " + sensorEvent.values[0]);
+            TextView view = (TextView) findViewById(R.id.text);
+            view.setText(Float.toString(sensorEvent.values[0]));
+            if (sensorEvent.values[0] > 1.3 * firstMeasure)
+                Toast.makeText(this, "alerting authorities", Toast.LENGTH_SHORT);
+        } catch (InterruptedException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
     }
 
     @Override
