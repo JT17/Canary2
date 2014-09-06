@@ -55,15 +55,8 @@ public class WearableActivity extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Log.d(TAG, "sensor event: " + sensorEvent.accuracy + " = " + sensorEvent.values[0]);
-        Notification notif = new Notification.Builder(mContext)
-                .setContentTitle("My Notification")
-                .setContentText(Float.toString(sensorEvent.values[0]))
-                .setSmallIcon(R.drawable.ic_plusone_small_off_client)
-                .build();
-
-        NotificationManager notificationManger =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManger.notify(0, notif);
+        TextView view = (TextView) findViewById(R.id.text);
+        view.setText(Float.toString(sensorEvent.values[0]));
 
     }
 

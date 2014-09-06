@@ -22,29 +22,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Wearable;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.location.Location;
-import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-import android.os.Handler;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends Activity implements  GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -62,6 +44,8 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
     // A fast frequency ceiling in milliseconds
     private static final long FASTEST_INTERVAL =
             MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
+
+    private static final String GET_HELP = "/text_for_help";
 
 
     //Global Variables to keep track of location
@@ -97,6 +81,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
+                .addApi(Wearable.API)
                 .build();
         mGoogleApiClient.connect();
         int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
@@ -127,7 +112,18 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
 
 
     }
+    @Override
+    public void onMessageReceived(MessageEvent messageEvent){
+        Log.d("OUTPUT", "Message received on PHONE!!");
+        if (messageEvent.getPath().equals(GET_HELP)){
+            Log.d("Message Path", messageEvent.getPath());
+            String response = new String(messageEvent.getData());
+            Log.d("Message Contents", response);
+            sendSMSOnTime();
 
+        }
+        stopSelf();
+    }
     @Override
     protected void onStop(){
         super.onStop();
