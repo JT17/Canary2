@@ -15,7 +15,7 @@ import com.google.android.gms.wearable.WearableListenerService;
 public class WearableMessageListener extends WearableListenerService {
     private static final String GET_HELP = "/text_for_help";
     private static final String STOP_HELP = "/stop_help";
-
+    private SMSSender smssender;
     private GoogleApiClient mGoogleApiClient;
     private SharedPreferences mSharedPreferences;
     @Override
@@ -37,14 +37,13 @@ public class WearableMessageListener extends WearableListenerService {
             Log.d("Message Path", messageEvent.getPath());
             String response = new String(messageEvent.getData());
             Log.d("Message Contents", response);
-            sendSMSOnTime();
+            smssender.sendSMSOnTime(true, true, MainActivity.mCurrentLocation, this);
 
         }
         if(messageEvent.getPath().equals(STOP_HELP)){
             Log.d("Message path", messageEvent.getPath());
             String response = new String(messageEvent.getData());
             Log.d("Message Contents", response);
-            updatesRequested = false;
         }
     }
 
