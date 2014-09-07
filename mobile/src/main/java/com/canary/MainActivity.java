@@ -40,7 +40,6 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
     private SMSSender smss;
     //Global Variables to keep track of location
     private GoogleApiClient mGoogleApiClient;
-    LocationListener mLocationListener;
     public static Location mCurrentLocation;
     // Define an object that holds accuracy and frequency parameters
     LocationRequest mLocationRequest;

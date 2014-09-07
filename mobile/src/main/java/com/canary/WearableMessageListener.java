@@ -1,11 +1,12 @@
 package com.canary;
 
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
@@ -16,7 +17,6 @@ import com.google.android.gms.wearable.WearableListenerService;
 public class WearableMessageListener extends WearableListenerService {
     private static final String GET_HELP = "/text_for_help";
     private static final String STOP_HELP = "/stop_help";
-    private SMSSender smssender;
     private GoogleApiClient mGoogleApiClient;
     private SharedPreferences mSharedPreferences;
     @Override
@@ -38,13 +38,27 @@ public class WearableMessageListener extends WearableListenerService {
             Log.d("Message Path", messageEvent.getPath());
             String response = new String(messageEvent.getData());
             Log.d("Message Contents", response);
-            MainActivity.mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            Log.d("Location", MainActivity.mCurrentLocation.toString());
+          /*  runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    smssender.sendSMSOnTime(true, true, MainActivity.mCurrentLocation, context);
+                }
+            });*/
 
-            smssender.sendSMSOnTime(true, true, MainActivity.mCurrentLocation, this);
+           //Location mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            LocationManager locationManager = (LocationManager) this
+                    .getSystemService(LOCATION_SERVICE);
+            Location mCurrentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            Log.d("Location", mCurrentLocation.toString());
+
+            SMSSender smssender =  new SMSSender();
+            smssender.sendSMSOnTime(true, true, mCurrentLocation, this);
+
+
 
         }
-        if(messageEvent.getPath().equals(STOP_HELP)){
+        else if(messageEvent.getPath().equals(STOP_HELP)){
             Log.d("Message path", messageEvent.getPath());
             String response = new String(messageEvent.getData());
             Log.d("Message Contents", response);
