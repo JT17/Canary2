@@ -38,6 +38,7 @@ public class WearableActivity extends Activity implements SensorEventListener, M
     private CountDownLatch latch;
     double firstMeasure;
     boolean sendMessage;
+    boolean isConnected;
     private GoogleApiClient mGoogleApiClient;
     private static final String GET_HELP = "/text_for_help";
     @Override
@@ -60,6 +61,7 @@ public class WearableActivity extends Activity implements SensorEventListener, M
         mSensorManager = ((SensorManager)getSystemService(SENSOR_SERVICE));
         mHeartRateSensor = mSensorManager.getDefaultSensor(SENSOR_TYPE_HEARTRATE);
         sendMessage = false;
+        isConnected = false;
 
     }
     @Override
@@ -79,7 +81,7 @@ public class WearableActivity extends Activity implements SensorEventListener, M
             latch.await();
             if(sensorEvent.values[0] > 0)
                 firstMeasure = sensorEvent.values[0];
-            Log.d(TAG, "sensor event: " + sensorEvent.accuracy + " = " + sensorEvent.values[0]);
+          //  Log.d(TAG, "sensor event: " + sensorEvent.accuracy + " = " + sensorEvent.values[0]);
             TextView view = (TextView) findViewById(R.id.text);
             view.setText(Float.toString(sensorEvent.values[0]));
             if (sensorEvent.values[0] > 1.3 * firstMeasure) {
@@ -106,20 +108,23 @@ public class WearableActivity extends Activity implements SensorEventListener, M
         mSensorManager.unregisterListener(this);
     }
     public void onClick(View v){
-        Log.v("Viewpoop", Integer.toString(v.getId()));
+        //Log.v("Viewpoop", Integer.toString(v.getId()));
         switch(v.getId()){
             case (R.id.wearablemain):
                 Log.v("Button", "Touched");
-                sendMessage = true;
+                if(isConnected){
+                    new RequestDataAsyncTask().execute();
+                }
+
         }
     }
 
     @Override
     public void onConnected(Bundle bundle) {
+        Log.v("Connection", "Devices Connected");
+        isConnected = true;
         Wearable.MessageApi.addListener(mGoogleApiClient, this);
-        if(sendMessage == true){
-            new RequestDataAsyncTask().execute();
-        }
+
     }
     public class RequestDataAsyncTask extends AsyncTask<Void,Void,Void> {
         @Override

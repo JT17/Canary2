@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
@@ -37,6 +38,9 @@ public class WearableMessageListener extends WearableListenerService {
             Log.d("Message Path", messageEvent.getPath());
             String response = new String(messageEvent.getData());
             Log.d("Message Contents", response);
+            MainActivity.mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            Log.d("Location", MainActivity.mCurrentLocation.toString());
+
             smssender.sendSMSOnTime(true, true, MainActivity.mCurrentLocation, this);
 
         }

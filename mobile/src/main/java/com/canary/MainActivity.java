@@ -89,14 +89,16 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         }
         updatesRequested = true; //assume app opened so updates are requested
         hasClicked = false;
-
     }
     //Called when activity is opened (so when the app is opened)
     @Override
     protected void onStart() {
         super.onStart();
         // Connect the client.
+
         mGoogleApiClient.connect();
+
+        mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
 
 
@@ -165,7 +167,6 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(1000); // Update location every second
-
         LocationServices.FusedLocationApi.requestLocationUpdates(
                 mGoogleApiClient, mLocationRequest, this);
 
