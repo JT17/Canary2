@@ -78,6 +78,7 @@ public class MainActivity extends Activity implements  GoogleApiClient.Connectio
         if(ConnectionResult.SUCCESS == resultCode)
             Log.d("Location updates", "Google play services is available");
         else{
+            Log.d("Test");
             Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
                     resultCode,
                     this,
